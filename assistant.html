@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>OpenClaw Frost Assistant</title>
+	<meta name="description" content="A frost-glass desktop assistant prototype.">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="stylesheet" href="css/assistant.css">
+</head>
+<body>
+	<main class="assistant-stage" aria-label="霜蓝桌面助手原型">
+		<section class="frost-shell" id="assistantShell" data-expanded="false">
+			<header class="compact-bar" data-drag-region>
+				<div class="compact-mascot" aria-hidden="true">
+					<img src="assets/peep.png" alt="">
+				</div>
+				<div class="compact-status">
+					<span class="status-dot"></span>
+					<span>ONLINE</span>
+				</div>
+				<label class="compact-input-label" for="compactInput">问</label>
+				<input id="compactInput" class="compact-input" type="text" placeholder="问我任何事…" autocomplete="off">
+				<button class="mode-button" type="button" id="compactVoice" data-capability="voice">语</button>
+				<button class="send-button" type="button" id="quickSend">发</button>
+				<button class="mode-button" type="button" id="compactTranslate" data-capability="screenshot-translate">译</button>
+				<button class="expand-button" type="button" id="togglePanel" aria-expanded="false" aria-controls="expandedPanel">
+					<span class="sr-only">展开聊天面板</span>
+					⌄
+				</button>
+			</header>
+
+			<section class="expanded-panel" id="expandedPanel" aria-label="展开聊天面板">
+				<aside class="mascot-card" aria-label="助手状态">
+					<div class="portrait-frame">
+						<img src="assets/peep.png" alt="助手头像">
+					</div>
+					<div class="worldline-card">
+						<span>OPENCLAW BUS</span>
+						<strong id="capabilityStatus">5 / 5</strong>
+						<small>voice · web · screen · selection · desktop</small>
+					</div>
+				</aside>
+
+				<div class="chat-card">
+					<div class="chat-toolbar" data-drag-region>
+						<div>
+							<p class="eyebrow">OpenClaw SkinPlus v1.3</p>
+							<h1>霜蓝助手 · 多模态桌面总线</h1>
+						</div>
+						<div class="window-actions" aria-label="窗口操作">
+							<button type="button" title="设置">✣</button>
+							<button type="button" title="最小化" id="minimizeWindow">−</button>
+							<button type="button" title="关闭" id="closeWindow">×</button>
+						</div>
+					</div>
+
+					<div class="capability-panel" aria-label="能力入口">
+						<button type="button" id="voiceToggle" data-capability="voice">
+							<span>🎙</span>
+							语音聊天
+						</button>
+						<button type="button" id="inspectPage" data-capability="webpage">
+							<span>🌐</span>
+							查看网页
+						</button>
+						<button type="button" id="screenshotTranslate" data-capability="screenshot-translate">
+							<span>▣</span>
+							截图翻译
+						</button>
+						<button type="button" id="selectedTextChat" data-capability="selection">
+							<span>✎</span>
+							选中文字沟通
+						</button>
+						<button type="button" id="desktopContext" data-capability="desktop-context">
+							<span>◈</span>
+							桌面内容沟通
+						</button>
+					</div>
+
+					<div class="context-strip" id="contextStrip" aria-live="polite">
+						<span class="context-chip active">OpenClaw 等待接入</span>
+						<span class="context-chip">默认人物资源</span>
+					</div>
+
+					<div class="message-list" id="messageList" aria-live="polite">
+						<article class="message assistant-message">
+							<img src="assets/peep.png" alt="">
+							<div class="bubble">
+								<span class="speaker">OpenClaw</span>
+								<p>我现在是功能总线原型：你接模型服务，我负责把语音、网页、截图、选区和桌面上下文整理成统一请求。</p>
+								<time>12:30</time>
+							</div>
+						</article>
+						<article class="message user-message">
+							<div class="bubble">
+								<p>先整合功能，模型用我的 OpenClaw 服务。</p>
+								<time>12:31</time>
+							</div>
+						</article>
+						<article class="message assistant-message">
+							<img src="assets/peep.png" alt="">
+							<div class="bubble media-bubble">
+								<span class="speaker">OpenClaw</span>
+								<p>可以。先用默认人物；素材清单已整理，后续可用 image2 生成角色状态、装饰和图标。</p>
+								<div class="mini-preview">❄</div>
+								<time>12:31</time>
+							</div>
+						</article>
+					</div>
+
+					<div class="drop-zone">
+						<span>❄</span>
+						<p>拖拽图片 / 粘贴图片 / 等待 OpenClaw 文件管线</p>
+						<button type="button" id="attachImage">添加附件</button>
+						<button type="button" id="pickFile">选择文件</button>
+					</div>
+
+					<form class="composer" id="composer">
+						<input id="messageInput" type="text" placeholder="输入消息，Enter 发送；可先点上方能力收集上下文…" autocomplete="off">
+						<button type="submit">发送</button>
+					</form>
+
+					<nav class="action-dock" aria-label="助手功能">
+						<button type="button" data-capability="screenshot-translate">▣ 截图</button>
+						<button type="button" data-capability="webpage">▤ 网页</button>
+						<button type="button" data-capability="selection">⬡ 选区</button>
+						<button type="button" id="clearMessages">♲ 清图</button>
+						<button type="button" id="collapsePanel">× 关闭</button>
+					</nav>
+				</div>
+			</section>
+		</section>
+	</main>
+	<script src="js/desktop-bridge.js"></script>
+	<script src="js/assistant.js"></script>
+</body>
+</html>

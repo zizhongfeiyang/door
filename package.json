@@ -1,0 +1,14 @@
+{
+  "name": "door-frost-assistant",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tauri desktop frost assistant prototype for the door project.",
+  "scripts": {
+    "desktop": "tauri dev",
+    "preview": "python3 -m http.server 4173",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  }
+}
